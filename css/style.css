@@ -25,7 +25,8 @@
   height: 70px;
   padding: 0px 10px 5px 0px;
   border-bottom: 1px solid #e7e7e7;
-  text-align: right; }
+  text-align: right;
+  overflow: hidden; }
 
 .display-value {
   padding: 35px 10px 0px 0px;
@@ -47,7 +48,8 @@
   width: 50px;
   height: 50px;
   text-align: center;
-  line-height: 50px; }
+  line-height: 50px;
+  cursor: pointer; }
 
 .calculator-button:hover {
   background-color: #e7e7e7; }
