@@ -1,0 +1,76 @@
+
+$dark-grey: rgb(231, 231, 231);
+$light-grey: rgb(241, 241, 241);
+$operator-color:rgb(79, 91, 255);
+$equals-color:rgb(223, 86, 86);
+
+
+* {
+    margin:0;
+    padding:0;
+}
+
+.font-details {
+    font-size:25px;
+    font-family: sans-serif;
+    font-weight: 100;
+}
+.body-color {
+    background-color:$dark-grey;
+}
+.center-title {
+    text-align: center;
+    font-size:20px;
+}
+.calculator-container {
+    width:240px;
+    height:340px;
+    margin:30px auto;
+    background-color:$light-grey;
+    border-radius:7px;
+}
+
+.display-area {
+    height:70px;
+    padding:0px 10px 5px 0px;
+    border-bottom:1px solid $dark-grey;
+    text-align:right;
+}
+
+.display-value {
+    padding:35px 10px 0px 0px;
+    font-size:30px;
+}
+
+.buttons-container {
+    width:200px;
+    margin:auto;
+}
+.row {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+}
+
+.special-button {
+   font-size:20px;
+   color: darkgrey;
+}
+.calculator-button {
+    width:50px;
+    height:50px;
+    text-align: center;
+    line-height:50px;
+}
+
+.calculator-button:hover {
+    background-color:$dark-grey;
+}
+
+.operation-button {
+    color:$operator-color;
+    font-size:35px;
+}
+
+.equals-button {
+    color:$equals-color;
+}

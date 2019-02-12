@@ -1,0 +1,19 @@
+{
+  "name": "html-calculator",
+  "version": "1.0.0",
+  "description": "Creating a basic Calculator app with html, scss and JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "run calc",
+    "scss": "node-sass --watch scss -o css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "new repo"
+  },
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^4.11.0"
+  }
+}
