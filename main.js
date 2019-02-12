@@ -1,3 +1,9 @@
+/*      This calculator is working as inteded, 
+        However the code is sloppy and unnecessarily repetitive at times.
+
+        I will work more on refactoring it. */
+
+
 // getting a js referece for buttons
 var jsOne = document.getElementById("btn-one");
 var jsTwo = document.getElementById("btn-two");
@@ -9,6 +15,16 @@ var jsSeven = document.getElementById("btn-seven");
 var jsEight = document.getElementById("btn-eight");
 var jsNine = document.getElementById("btn-nine");
 var jsZero = document.getElementById("btn-zero");
+var jsDot = document.getElementById("btn-dot");
+
+//getting js references for operation buttons
+var jsPlus = document.getElementById("btn-plus");
+var jsMinus = document.getElementById("btn-minus");
+var jsMultiply = document.getElementById("btn-multiply");
+var jsDivide = document.getElementById("btn-divide");
+
+//getting js reference for equals button
+var jsEqual = document.getElementById("btn-equal");
 
 // getting a js reference for all num bts at once
 var jsNumButtons = document.getElementsByClassName("num-button");
@@ -19,9 +35,9 @@ var jsDisplayValue = document.getElementById("display-val");
 //getting reference to clear button
 var jsClearBtn = document.getElementById("clear-btn");
 
-
 //getting reference to cancel button
 var jsCancelBtn = document.getElementById("cancel-btn");
+
 
 
 /*  COULDN'T GET THIS TO WORK WITHOUT LOOKING UP ONLINE
@@ -56,7 +72,7 @@ for (let i = 0 ; i < jsNumButtons.length; i++)
         }
         else 
         {
-            jsDisplayValue.innerHTML  = jsDisplayValue.innerHTML  + jsOne.innerHTML;
+            jsDisplayValue.innerHTML  +=  jsOne.innerHTML;
         }
     }
 
@@ -69,7 +85,7 @@ for (let i = 0 ; i < jsNumButtons.length; i++)
         }
         else 
         {
-            jsDisplayValue.innerHTML  = jsDisplayValue.innerHTML  + jsTwo.innerHTML;
+            jsDisplayValue.innerHTML  +=  jsTwo.innerHTML;
         }
     }
 
@@ -82,7 +98,7 @@ for (let i = 0 ; i < jsNumButtons.length; i++)
         }
         else 
         {
-            jsDisplayValue.innerHTML  = jsDisplayValue.innerHTML  + jsThree.innerHTML;
+            jsDisplayValue.innerHTML  +=  jsThree.innerHTML;
         }
     }
 
@@ -95,7 +111,7 @@ for (let i = 0 ; i < jsNumButtons.length; i++)
         }
         else 
         {
-            jsDisplayValue.innerHTML  = jsDisplayValue.innerHTML  + jsFour.innerHTML;
+            jsDisplayValue.innerHTML  +=  jsFour.innerHTML;
         }
     }
 
@@ -108,7 +124,7 @@ for (let i = 0 ; i < jsNumButtons.length; i++)
         }
         else 
         {
-            jsDisplayValue.innerHTML  = jsDisplayValue.innerHTML  + jsFive.innerHTML;
+            jsDisplayValue.innerHTML  += jsFive.innerHTML;
         }
     }
 
@@ -121,7 +137,7 @@ for (let i = 0 ; i < jsNumButtons.length; i++)
         }
         else 
         {
-            jsDisplayValue.innerHTML  = jsDisplayValue.innerHTML  + jsSix.innerHTML;
+            jsDisplayValue.innerHTML  += jsSix.innerHTML;
         }
     }
 
@@ -135,7 +151,7 @@ for (let i = 0 ; i < jsNumButtons.length; i++)
         }
         else 
         {
-            jsDisplayValue.innerHTML  = jsDisplayValue.innerHTML  + jsSeven.innerHTML;
+            jsDisplayValue.innerHTML  += jsSeven.innerHTML;
         }
     }
 
@@ -149,7 +165,7 @@ for (let i = 0 ; i < jsNumButtons.length; i++)
         }
         else 
         {
-            jsDisplayValue.innerHTML  = jsDisplayValue.innerHTML  + jsEight.innerHTML;
+            jsDisplayValue.innerHTML  += jsEight.innerHTML;
         }
     }
 
@@ -163,7 +179,7 @@ for (let i = 0 ; i < jsNumButtons.length; i++)
         }
         else 
         {
-            jsDisplayValue.innerHTML  = jsDisplayValue.innerHTML  + jsNine.innerHTML;
+            jsDisplayValue.innerHTML  += jsNine.innerHTML;
         }
     }
 
@@ -177,15 +193,100 @@ for (let i = 0 ; i < jsNumButtons.length; i++)
         }
         else 
         {
-            jsDisplayValue.innerHTML  = jsDisplayValue.innerHTML  + jsZero.innerHTML;
+            jsDisplayValue.innerHTML  +=  jsZero.innerHTML;
         }
+    }
+
+    // the . button
+    jsDot.onclick = () => {
+
+        // this variable is so I can use includes() without error.
+        var jsDpVl = jsDisplayValue.innerHTML;
+
+        if (!jsDpVl.includes(".")) 
+        {
+            jsDisplayValue.innerHTML  += jsDot.innerHTML;
+        }
+            
+
+        
     }
 
     // working out the clear button
     jsClearBtn.onclick = () => {
         jsDisplayValue.innerHTML = 0;
+        hiddenValue = undefined;
     }
 
+    // cancel button
     jsCancelBtn.onclick = () => {
+        
         jsDisplayValue.innerHTML = jsDisplayValue.innerHTML.slice(0 , jsDisplayValue.innerHTML.length - 1);
+        
+        if (jsDisplayValue.innerHTML.length == "")
+        {
+            jsDisplayValue.innerHTML = "0";
+        }
+    }
+
+    // this is the value that will be remembered from before clicking an operation button
+    var hiddenValue;
+
+    // this is the value that will be used later in regards to remembering which operation was selected
+    var operationType;
+
+    // Addition Button 
+    jsPlus.onclick = () => {
+        operationType = 1;
+        hiddenValue = jsDisplayValue.innerHTML;
+        jsDisplayValue.innerHTML = 0;
+    }
+
+     // Minus Button 
+     jsMinus.onclick = () => {
+        operationType = 2;
+        hiddenValue = jsDisplayValue.innerHTML;
+        jsDisplayValue.innerHTML = 0;
+    }
+
+     // Multiply Button 
+     jsMultiply.onclick = () => {
+        operationType = 3;
+        hiddenValue = jsDisplayValue.innerHTML;
+        jsDisplayValue.innerHTML = 0;
+    }
+
+      // Divide Button 
+      jsDivide.onclick = () => {
+        operationType = 4;
+        hiddenValue = jsDisplayValue.innerHTML;
+        jsDisplayValue.innerHTML = 0;
+    }
+
+     // Equal Button and performing the operation
+     jsEqual.onclick = () => {
+        
+        if (operationType == 1)
+        {
+            jsDisplayValue.innerHTML = parseInt(hiddenValue,10) + parseInt(jsDisplayValue.innerHTML,10);
+        }
+
+        else if (operationType == 2)
+        {
+            jsDisplayValue.innerHTML = hiddenValue - jsDisplayValue.innerHTML;
+        }
+
+        else if (operationType == 3)
+        {
+            jsDisplayValue.innerHTML *= hiddenValue;
+        }
+
+        else if (operationType == 4)
+        {
+            jsDisplayValue.innerHTML = hiddenValue / jsDisplayValue.innerHTML;
+        }
+        else
+        {
+            jsDisplayValue.innerHTML = "0";
+        }
     }
